@@ -1,9 +1,11 @@
 package com.tranquocanh.repository.custom.impl;
 
 import com.tranquocanh.builder.BuildingBuilder;
+import com.tranquocanh.dto.BuildingDTO;
 import com.tranquocanh.entity.BuildingEntity;
 import com.tranquocanh.paging.Pageble;
 import com.tranquocanh.repository.custom.BuidingRepositoryCustom;
+import com.tranquocanh.util.SecurityUtils;
 import org.springframework.stereotype.Repository;
 import org.apache.commons.lang3.StringUtils;
 import javax.persistence.EntityManager;
@@ -13,6 +15,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
@@ -107,5 +110,24 @@ public class BuildingRepositoryImpl implements BuidingRepositoryCustom {
         Query query = entityManager.createNativeQuery(sql.toString());
         BigInteger result= (BigInteger)query.getSingleResult();
         return result.intValue() ;
+    }
+
+    @Override
+    public List<BuildingEntity> findBuildingAssigned(Pageble pageble, BuildingBuilder buildingBuilder) {
+        StringBuilder sql = new StringBuilder(" select b.* from building b");
+        sql.append(" join assignment a on b.id = a.building_id ");
+        sql.append(" join estatespring.users u on a.user_id = u.id ");
+        sql.append(" where u.username = ").append("'"+SecurityUtils.getPrincipal().getUsername()+"'");
+        sql = buildSqlQuery(sql,buildingBuilder);
+        if(pageble.getSorter().getSortBy() != null && pageble.getSorter().getSortName() != null) {
+            sql.append(" order by "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+" ");
+        }
+        Query query = entityManager.createNativeQuery(sql.toString(),BuildingEntity.class);
+        if (pageble .getOffset() != null && pageble.getLimit() != null) {
+            query.setFirstResult(pageble.getOffset());
+            query.setMaxResults(pageble.getLimit());
+        }
+
+        return query.getResultList();
     }
 }

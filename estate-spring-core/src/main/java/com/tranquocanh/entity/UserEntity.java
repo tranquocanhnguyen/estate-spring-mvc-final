@@ -27,6 +27,8 @@ public class UserEntity extends BaseEntity {
             @JoinColumn(name = "role_id",nullable = false)})
     private List<RoleEntity> roles =new ArrayList<>();
 
+    @OneToMany(mappedBy = "userEntity",fetch = FetchType.LAZY)
+    private List<CustomerManageEntity> customerManageEntities;
 
     public String getUserName() {
         return userName;
@@ -68,4 +70,11 @@ public class UserEntity extends BaseEntity {
         this.roles = roles;
     }
 
+    public List<CustomerManageEntity> getCustomerManageEntities() {
+        return customerManageEntities;
+    }
+
+    public void setCustomerManageEntities(List<CustomerManageEntity> customerManageEntities) {
+        this.customerManageEntities = customerManageEntities;
+    }
 }

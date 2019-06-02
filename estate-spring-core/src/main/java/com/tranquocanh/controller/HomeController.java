@@ -1,7 +1,10 @@
 package com.tranquocanh.controller;
 
+import com.tranquocanh.constant.SystemConstant;
 import com.tranquocanh.dto.MyUserDetail;
+import com.tranquocanh.service.impl.UserService;
 import com.tranquocanh.util.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class HomeController {
+
 
     @GetMapping("/admin/home")
     public ModelAndView homePage() {

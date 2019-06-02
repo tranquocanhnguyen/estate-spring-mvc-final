@@ -98,4 +98,10 @@ public class BuildingService implements IBuildingService {
         entity.setStaffs(userEntities);
         buildingRepository.save(entity);
     }
+
+    @Override
+    public List<BuildingDTO> findBuidingAssigned(Pageble pageble, BuildingBuilder buildingBuilder) {
+        List<BuildingEntity> entities = buildingRepository.findBuildingAssigned(pageble,buildingBuilder);
+        return entities.stream().map(item -> buildingConverter.convertToDTO(item)).collect(Collectors.toList());
+    }
 }

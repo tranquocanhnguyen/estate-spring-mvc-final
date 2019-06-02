@@ -26,6 +26,7 @@
         <spring.data>1.11.5.RELEASE</spring.data>
         <modelmapper.version>0.7.4</modelmapper.version>
         <sitemesh.version>2.4.2</sitemesh.version>
+        <mysql.version>8.0.11</mysql.version>
     </properties>
 
     <dependencies>
@@ -201,6 +202,11 @@
             <version>3.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
 
     </dependencies>
 

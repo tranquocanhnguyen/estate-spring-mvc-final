@@ -8,6 +8,7 @@ import com.tranquocanh.paging.PageRequest;
 import com.tranquocanh.paging.Pageble;
 import com.tranquocanh.service.IBuildingService;
 import com.tranquocanh.sort.Sorter;
+import com.tranquocanh.util.SecurityUtils;
 import com.tranquocanh.util.message.MessageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,12 @@ public class BuildingController {
                 .setNumberOfBasement(model.getNumberOfBasement())
                 .setType(model.getBuildingTypes())
                 .build();
-         model.setListResult(buildingService.findAll(pageble,buildingBuilder)) ;
+        List<String> role = SecurityUtils.getAuthorities();
+        if (role.contains("MANAGER")) {
+            model.setListResult(buildingService.findAll(pageble,buildingBuilder)) ;
+        } else if (role.contains("STAFF")){
+            model.setListResult(buildingService.findBuidingAssigned(pageble,buildingBuilder));
+        }
          model.setTotalItem(buildingService.getToTalItem(buildingBuilder));
          mav.addObject(SystemConstant.MODEL,model);
          //add buidling type

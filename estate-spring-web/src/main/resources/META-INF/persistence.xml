@@ -4,6 +4,10 @@
         <class>com.tranquocanh.entity.UserEntity</class>
         <class>com.tranquocanh.entity.RoleEntity</class>
         <class>com.tranquocanh.entity.BuildingEntity</class>
+        <class>com.tranquocanh.entity.CustomerManageEntity</class>
+        <class>com.tranquocanh.entity.CustomerEntity</class>
+        <class>com.tranquocanh.entity.HistoryManagementEntity</class>
+
     </persistence-unit>
 </persistence>
 

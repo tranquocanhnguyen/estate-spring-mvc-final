@@ -1,6 +1,7 @@
 package com.tranquocanh.repository.custom;
 
 import com.tranquocanh.builder.BuildingBuilder;
+import com.tranquocanh.dto.BuildingDTO;
 import com.tranquocanh.entity.BuildingEntity;
 import com.tranquocanh.paging.Pageble;
 
@@ -10,4 +11,5 @@ public interface BuidingRepositoryCustom {
 
     List<BuildingEntity> findAll(Pageble pageble, BuildingBuilder builder);
     int getToTalItem(BuildingBuilder builder);
+    List<BuildingEntity> findBuildingAssigned(Pageble pageble, BuildingBuilder buildingBuilder);
 }

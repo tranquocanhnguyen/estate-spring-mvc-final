@@ -16,4 +16,5 @@ public interface IBuildingService {
     void deleteById(Long[] ids);
     BuildingDTO update(BuildingDTO model);
     void assignBuilding(BuildingDTO model);
+    List<BuildingDTO> findBuidingAssigned(Pageble pageble, BuildingBuilder buildingBuilder);
 }
