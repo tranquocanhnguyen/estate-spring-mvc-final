@@ -16,7 +16,7 @@
         <jsp.api.version>2.0</jsp.api.version>
         <jstl.version>1.2</jstl.version>
         <servlet.api.version>3.1.0</servlet.api.version>
-        <springframework.version>4.3.13.RELEASE</springframework.version>
+        <springframework.version>5.3.18</springframework.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <httpclient.version>4.1.1</httpclient.version>
         <maven.compiler.target>1.8</maven.compiler.target>
